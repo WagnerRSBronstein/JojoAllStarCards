@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Batalha de Cartas - JoJo Edition</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Batalha de Cartas - JoJo Edition</h1>
+  <div id="tela_inicial">
+    <p>Escolha sua carta:</p>
+    <select id="sct_carta" onchange="updatePreview()" class="escolher">
+      <option value="1">Jotaro Kujo</option>
+      <option value="2">Yoshikage Kira</option>
+      <option value="3">Dio Brando</option>
+      <option value="4">Diavolo</option>
+      <option value="5">Enrico Pucci</option>
+      <option value="6">Josuke Higashikata</option>
+      <option value="7">Giorno Giovanna</option>
+      <option value="8">Jolyne Kujo</option>
+      <option value="9">Funny Valentine</option>
+    </select>
+
+    <button class="botao" onclick="startBattle()">Iniciar Batalha</button>
+
+    <div id="preview">
+      <img id="preview_img" src="" alt="Imagem da carta">
+      <div id="habilidades">
+        <h3>Habilidades</h3>
+        <ul id="lista_habilidades"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/personagens.js"></script>
+
+  <script>
+    function updatePreview() {
+      var sel = document.getElementById('sct_carta');
+      var val = sel ? sel.value : '1';
+      var img = document.getElementById('preview_img');
+      var ul = document.getElementById('lista_habilidades');
+      img.src = imagemCarta(val);
+      ul.innerHTML = '';
+      var list = habilidades[val] || [];
+      for (var i = 0; i < list.length; i++) {
+        var li = document.createElement('li');
+        li.textContent = list[i];
+        ul.appendChild(li);
+      }
+    }
+
+    // Redireciona para a página de batalha passando a carta selecionada
+    function startBattle() {
+      var sel = document.getElementById('sct_carta');
+      var val = sel ? sel.value : '1';
+      location.href = 'batalha.html?c=' + val;
+    }
+
+    // atualiza ao carregar
+    window.addEventListener('load', updatePreview);
+  </script>
+</body>
+
+</html>
