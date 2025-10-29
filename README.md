@@ -1,2 +1,2 @@
 # JojoAllStarCards
-Um jogo de carta estilo naruto RPG, com alguns personagens de jojo bizzare adventure  
+Um jogo de carta estilo Naruto online, com alguns personagens de Jojo Bizzare Adventure
