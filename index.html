@@ -1,68 +1,223 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Batalha de Cartas - JoJo Edition</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beetech</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="icon" href="assets/logo.png">
 </head>
 
 <body>
-  <h1>Batalha de Cartas - JoJo Edition</h1>
-  <div id="tela_inicial">
-    <p>Escolha sua carta:</p>
-    <select id="sct_carta" onchange="updatePreview()" class="escolher">
-      <option value="1">Jotaro Kujo</option>
-      <option value="2">Yoshikage Kira</option>
-      <option value="3">Dio Brando</option>
-      <option value="4">Diavolo</option>
-      <option value="5">Enrico Pucci</option>
-      <option value="6">Josuke Higashikata</option>
-      <option value="7">Giorno Giovanna</option>
-      <option value="8">Jolyne Kujo</option>
-      <option value="9">Funny Valentine</option>
-    </select>
+  <header>
+    <div class="container">
+      <a href="index.html"><img src="assets/logo.png" alt="logo_AllStarCard" width="40px"  style="padding-left: 5px;"/></a>
+      <ul class="navbar">
+        <li><a href="#h1_sobre">Sobre</a></li>
+        <li><a href="#h1_beneficios">Benefícios</a></li>
+        <li><a href="#h1_calculadora">Calculadora</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <button class="botao" onclick="startBattle()">Iniciar Batalha</button>
+  <div class="container-banner">
+    <div class="banner-texto">
+      <div class="titulo">
+        <h1>JOJO'S
+          <br>ALL STAR CARDS.
+        </h1>
+        <p>Jogue agora e se divirta! com cartas baseadas no universo
+          de Jojo Bizarre Adventure.</p>
+      </div>
+      <a href="selecao.html"><button>Jogue Agora⭐</button></a>
+    </div>
+    
 
-    <div id="preview">
-      <img id="preview_img" src="" alt="Imagem da carta">
-      <div id="habilidades">
-        <h3>Habilidades</h3>
-        <ul id="lista_habilidades"></ul>
+  </div>
+  <div class="quemsomos">
+    <div class="container-quemsomos">
+      <h1 id="h1_sobre"">Sobre Jojo's Bizarre Adventure</h1>
+      <div class=" quemsomos-info">
+        <div class="quemsomos-texto">
+          <p> JoJo’s Bizarre Adventure é uma das franquias mais icônicas do mundo dos mangás e animes, criada por
+            Hirohiko Araki em 1987. A série é conhecida por seu estilo visual marcante, tramas cheias de reviravoltas e
+            personagens carismáticos, cada um com sua própria personalidade, poderes e legado.<br><br>
+
+              Dividida em diferentes partes, cada uma com um novo protagonista da família Joestar, a obra mistura
+            aventura, drama, humor e elementos sobrenaturais, explorando temas como destino, coragem e o poder da
+            vontade.<br><br>
+
+              Com seu traço estilizado, poses extravagantes e trilha sonora inspirada na cultura pop ocidental, JoJo
+            transcende o gênero e se tornou um verdadeiro fenômeno cultural, influenciando moda, arte e até memes ao
+            redor do mundo.<br><br>
+
+              Prepare-se para mergulhar em um universo onde o bizarro é a norma, a estética é uma arma, e cada batalha é
+            uma obra de arte..</p>
+        </div>
+        <div class="quemsomos-img"> <img src="assets/Brando.png" alt=""></div>
+    </div>
+  </div>
+  <img src="assets/images/Polygon 5.png" alt="">
+  </div>
+  <div>
+    <div class="comofunciona">
+      <h1>Como o jogo funciona?</h1>
+      <div class="comofunciona-banner">
+        <div class="boxes">
+          <img class="icon" src="assets/images/icon1.png" alt="">
+          <div class="box">
+            <p class="numero">1</p>
+            <p>Monitora a temperatura das suas colmeias.</p>
+          </div>
+        </div>
+        <div class="boxes">
+          <img class="icon" src="assets/images/icon2.png" alt="">
+          <div class="box">
+            <p class="numero">2</p>
+            <p>Armazena e envia os dados.</p>
+          </div>
+        </div>
+        <div class="boxes">
+          <img class="icon" src="assets/images/icon3.png" alt="">
+          <div class="box">
+            <p class="numero">3</p>
+            <p>Exibe dashboards estrátegicos sobre produtividade.</p>
+          </div>
+        </div>
+        <div class="boxes">
+          <img class="icon" src="assets/images/icon4.png" alt="">
+          <div class="box">
+            <p class="numero">4</p>
+            <p>Envia alertas para casos extremos de variação da temperatura.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="fim">
+      <img src="assets/images/Polygon 6.png" alt="">
+
+    </div>
+  </div>
+  <div class="escolher">
+    <div class="banner-escolher">
+      <h1 id="h1_beneficios">Benefícios de escolher a Beetech?</h1>
+      <div class="boxes">
+        <div class="box">
+          <img src="assets/images/hexagono1.png" alt="">
+          <p style="text-align: center;"><b></p>
+        </div>
+        <div class="box">
+          <img src="assets/images/hexagono2.png" alt="">
+          <p style="text-align: center;"> <b></p>
+        </div>
+        <div class="box">
+          <img src="assets/images/hexagono3.png" alt="">
+          <p style="text-align: center;"><b></p>
+        </div>
       </div>
     </div>
   </div>
-
-  <script src="js/personagens.js"></script>
-
-  <script>
-    function updatePreview() {
-      var sel = document.getElementById('sct_carta');
-      var val = sel ? sel.value : '1';
-      var img = document.getElementById('preview_img');
-      var ul = document.getElementById('lista_habilidades');
-      img.src = imagemCarta(val);
-      ul.innerHTML = '';
-      var list = habilidades[val] || [];
-      for (var i = 0; i < list.length; i++) {
-        var li = document.createElement('li');
-        li.textContent = list[i];
-        ul.appendChild(li);
-      }
-    }
-
-    // Redireciona para a página de batalha passando a carta selecionada
-    function startBattle() {
-      var sel = document.getElementById('sct_carta');
-      var val = sel ? sel.value : '1';
-      location.href = 'batalha.html?c=' + val;
-    }
-
-    // atualiza ao carregar
-    window.addEventListener('load', updatePreview);
-  </script>
+  </div>
+  <div class="calculadora">
+    <h1 id="h1_calculadora">Conheça a nossa ferramenta</h1>
+    <div class="calculadora-banner">
+      <div class="texto">
+        <h1>Simulador Financeiro</h1>
+        <ul>
+          <li>Simulação rápida e prática</li>
+          <li>Visualização dos lucros</li>
+          <li>Resultados claros e objetivos</li>
+        </ul>
+      </div>
+      <div class="img">
+        <img src="assets/images/calculadora.png" alt="">
+        <a href="calculadora.html"><button>ACESSAR</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="equipe">
+    <div class="banner-equipe">
+      <div class="titulo">
+        <h1>Sobre mim</span>
+        </h1>
+      </div>
+      <div class="boxes1">
+        <div class="box">
+          <img src="assets/images/Tiago.png" alt="">
+          <p>Wagner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="formulario">
+    <h1>Fomulário de interesse</h1>
+    <div class="banner-formulario">
+      <div class="campos">
+        <div class="inputs">
+          <div class="input">
+            <p>Nome:</p>
+            <input type="text">
+          </div>
+          <div class="input">
+            <p>Email:</p>
+            <input type="text">
+          </div>
+          <div class="input">
+            <p>CNPJ:</p>
+            <input type="text">
+          </div>
+        </div>
+        <div class="inputs">
+          <div class="input">
+            <p>Sobrenome:</p>
+            <input type="text">
+          </div>
+          <div class="input">
+            <p>Telefone:</p>
+            <input type="text">
+          </div>
+          <div class="input">
+            <p>Cargo:</p>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+      <div class="input-mensagem">
+        <p>Mensagem</p>
+        <input type="text">
+      </div>
+      <button>ENVIAR</button>
+    </div>
+  </div>
+  <footer>
+    <div class="icons">
+      <img src="assets/images/beetech-logo.png" alt="">
+      <div class="icon">
+        <img src="assets/images/facebook-icon.png" alt="">
+        <img src="assets/images/linkedin-icon.png" alt="">
+        <img src="assets/images/youtube-icon.png" alt="">
+        <img src="assets/images/instagram-icon.png" alt="">
+      </div>
+    </div>
+    <div class="textos">
+      <div class="texto">
+        <p>Home</p>
+        <p>Quem somos</p>
+        <p>Nosso sistema</p>
+      </div>
+      <div class="texto">
+        <p>Por que nós</p>
+        <p>Simulador Financeiro</p>
+        <p>Nossa equipe</p>
+      </div>
+      <div class="texto">
+        <p>Formulário</p>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>
