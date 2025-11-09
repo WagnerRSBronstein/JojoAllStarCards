@@ -440,21 +440,22 @@ body .quemsomos img{
 
 footer{
     display: flex;
-    background-color: #F7C53A;
+    background-color: #080808;
     justify-content: space-between;
     padding: 0 80px;
 }
 
 footer .icons{
     display: flex;
-    flex-direction: column;
+    flex-direction: center;
     align-items: center;
 }
 
 footer .icons img{
-    height: 110px;
+    height: 50px;
 }
 footer .icons .icon img{
+    justify-content: center;
     height: 30px;
 }
 
