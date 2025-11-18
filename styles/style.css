@@ -104,7 +104,7 @@ html{
     justify-content: center;
     align-items: center;
     margin: 0 0 20px;
-    color: black;
+    color: white;
 }
 .container-banner .banner-texto .titulo h1{
     font-size: 60px;
@@ -366,6 +366,43 @@ body .quemsomos img{
 
 .banner-equipe .boxes1{
     display: flex;
+
+}
+.banner-equipe .boxes1 .box #img{
+    width: 300px;
+    margin-right: 200%;
+
+}
+.banner-equipe .boxes1 .box #img2{
+    width: 300px;
+    margin-left: 8%;
+    margin-top: -205px;
+
+}
+.banner-equipe .boxes1 .box #img3{
+    width: 300px;
+    margin-left: 215%;
+    margin-top: -205px;
+
+}
+.banner-equipe .boxes1 .box #texto{
+    display: flex;
+    width: 300px;
+    margin-right: 200%;
+
+}
+.banner-equipe .boxes1 .box #texto2{
+    display: flex;
+    width: 300px;
+    margin-top: -135px;
+    margin-left: 20px;
+
+}
+.banner-equipe .boxes1 .box #texto3{
+    display: flex;
+    width: 300px;
+    margin-top: -135px;
+    margin-right: -683px;
 
 }
 .banner-equipe .boxes2{
