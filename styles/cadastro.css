@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-*{
+
+* {
     margin: 0px;
     padding: 0px;
 }
-body{
+
+body {
     display: flex;
     justify-content: center;
     background-color: #FEF7E6;
@@ -11,108 +13,123 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    /* align-items: center; */
+    background-image: url("../assets/banner.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
-body a{
+
+body a {
     font-weight: bold;
 }
 
-header{
+header {
     width: 100%;
 }
-header .container{
+
+header .container {
     display: flex;
-    background-color: #DFCD9E;
     justify-content: space-between;
-    padding: 0 0px;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: transparent;
+    border-radius: 7%;
     align-items: center;
-    height: 50px;
+    height: 75px;
+    padding: 0 1%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
     width: 100%;
+    position: absolute;
+    z-index: 1000;
 }
 
-header .container .navbar{
+header .container .navbar {
     display: flex;
 
 }
 
-header .container .navbar li{
+header .container .navbar li {
+    display: flex;
+    align-items: center;
     list-style: none;
     margin: 0 25px;
     font-size: 22px;
     font-weight: Semibold;
 }
-header .container .navbar li a{
+
+header .container .navbar li a {
     text-decoration: none;
-    color: black;
-    
+    color: #ecfc0af5;
 }
-header .container .navbar li a:hover{
-    text-decoration:underline;
+
+header .container .navbar li a:hover {
+    text-decoration: underline;
 }
 
 
-.container-pai{
+.container-pai {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.main .container{
-    background-image: url(../assets/logo.png);
-    background-size: 589px;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    
-}
-.main img{
+
+.main img {
     height: 139px;
     width: 130px;
     margin-top: 30px;
 }
 
 
-.main .container{
-   
+.main .container {
     z-index: 2;
-    
     display: flex;
     flex-direction: column;
-    width: 800px;
-    height: 800px;
-    background-color: white;
+    width: 650px;
+    height: auto;
+    background: white;
+    backdrop-filter: blur(10px);
     align-items: center;
+    border: transparent;
     border-radius: 15px;
-    margin-top: 30px;
-    background-image: images/Group-2png;
- margin-bottom: 30px;
-    
+    margin-top: 120px;
+    padding: 40px;
 }
-.main .campos{
+
+
+.main .campos {
     display: flex;
-    
+
     flex-direction: row;
     align-items: flex-start;
-    p{
+
+    p {
         color: red;
         font-size: 11px;
     }
 }
-.main .campos .cabecalho{
+
+.main .campos .cabecalho {
     font-size: 15px;
     color: black;
-      font-weight: bold;
-        margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+    font-weight: bold;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
-.main input{
+
+.main input {
     border: 1px solid #aaaaaa;
     background-color: transparent;
     border-radius: 10px;
     border-width: 1px;
-    height: 50px;
-    width: 300px;
-    font-size: 20px;
+    height: 45px;
+    width: 260px;
+    /* antes 300 */
+    font-size: 18px;
     outline: 0;
     text-indent: 15px;
 }
@@ -120,43 +137,44 @@ header .container .navbar li a:hover{
 
 
 button {
-  background-color: black;
-  color: #fee600;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
-  width: 400px;
-  border-style: solid;
-  z-index: 2;
-  margin-top: 20px;
-  cursor: pointer;
+    background-color: black;
+    color: #fee600;
+    font-size: 20px;
+    border-radius: 10px;
+    height: 40px;
+    width: 300px;
+    border-style: solid;
+    z-index: 2;
+    margin-top: 20px;
+    cursor: pointer;
 }
 
 .div_button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 button:hover {
-  background-color: #fee600;
-  color: black;
-  transition: 0.5s;
+    background-color: #fee600;
+    color: black;
+    transition: 0.5s;
 }
 
-.main .caixaInput{
+.main .caixaInput {
     margin: 8px;
     gap: 10px;
 
 }
 
-.main .container h3{
+.main .container h3 {
     font-weight: bold;
     color: black;
 }
-.main a{
+
+.main a {
     text-decoration: underline;
     cursor: pointer;
     color: black;
-    
+
 }
