@@ -179,7 +179,7 @@ body {
 }
 
 body {
-  background-image: url('assets/fundo.png');
+  background-image: url('../assets/fundo.png');
   background-size: cover;
   /* cobre toda a tela */
   background-position: center;

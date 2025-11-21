@@ -1,13 +1,13 @@
 var imagens = {
-  1: "assets/jotaro.jpg",
-  2: "assets/kira.jpg",
-  3: "assets/Dio.png",
-  4: "assets/diavolo.jpg",
-  5: "assets/pucci.jpg",
-  6: "assets/josuke.png",
-  7: "assets/giorno.png",
-  8: "assets/jolyne.png",
-  9: "assets/valentinef.png"
+  1: "./assets/jotaro.jpg",
+  2: "./assets/kira.jpg",
+  3: "./assets/Dio.png",
+  4: "./assets/diavolo.jpg",
+  5: "./assets/pucci.jpg",
+  6: "./assets/josuke.png",
+  7: "./assets/giorno.png",
+  8: "./assets/jolyne.png",
+  9: "./assets/valentine.jpg"
 };
 
 function imagemCarta(codigo) {

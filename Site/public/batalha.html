@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Batalha de Cartas - Batalha</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/battle_selection.css">
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
@@ -33,7 +33,7 @@
 
   <div id="div_mensagem"></div>
 
-  <script src="js/personagens.js"></script>
+  <script src="personagens.js"></script>
   <script>
     // --- configuração básica ---
     var vidaMax = 100;
@@ -174,16 +174,15 @@
           else if (vidaJogador <= 0 && vidaPC > 0) fim = "💀 Você foi derrotado!";
           else fim = "😐 Empate! Ambos caíram.";
 
-          div_mensagem.innerHTML = "<h2>" + fim + "</h2><button onclick='voltar()'>Voltar ao Início</button> <button onclick='reiniciar()'>Jogar Novamente</button>";
+          div_mensagem.innerHTML = "<h2>" + fim + "</h2><button onclick='voltar()'>Voltar ao Início</button> <button onclick='reiniciar()'>Jogar Novamente</button> <button onclick='detalhar()'>Mais detalhes da partida</button>";
         } else {
           rodada++;
           if (cooldownHabilidade3 > 0) cooldownHabilidade3--;
           if (cooldownValentine1 > 0) cooldownValentine1--;
           if (cooldownKira > 0) cooldownKira--;
           gerarBotoes();
-          atualizarVida();
           div_mensagem.innerHTML = texto;
-        }
+        }atualizarVida();
       }
     }
 
@@ -199,6 +198,9 @@
 
     function voltar() {
       location.href = 'selecao.html';
+    }
+    function detalhar(){
+      location.href = './dashboard/dashboard.html';
     }
 
     // inicia automaticamente quando a página é carregada

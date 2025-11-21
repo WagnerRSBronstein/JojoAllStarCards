@@ -4,16 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Batalha de Cartas - JoJo Edition</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/battle_selection.css">
+
+  <!-- Ícone -->
   <link rel="icon" type="image/png" href="assets/logo.png">
 </head>
 
 <body>
-  <button id="voltar" onclick="voltar()"><img src="assets/voltar.png" width="50px">Voltar
+
+  <!-- Botão voltar -->
+  <button id="voltar" onclick="voltar()">
+    <img src="assets/voltar.png" width="50px"> Voltar
   </button>
+
   <h1>Batalha de Cartas - JoJo Edition</h1>
+
   <div id="tela_inicial">
+
     <p>Escolha sua carta:</p>
+
+    <!-- Seleção de Personagem -->
     <select id="sct_carta" onchange="updatePreview()" class="escolher">
       <option value="1">Jotaro Kujo</option>
       <option value="2">Yoshikage Kira</option>
@@ -26,49 +38,58 @@
       <option value="9">Funny Valentine</option>
     </select>
 
+    <!-- Botão iniciar -->
     <button class="botao" onclick="startBattle()">Iniciar Batalha</button>
-    
 
+    <!-- Preview -->
     <div id="preview">
       <img id="preview_img" src="" alt="Imagem da carta">
+
       <div id="habilidades">
         <h3>Habilidades</h3>
         <ul id="lista_habilidades"></ul>
       </div>
     </div>
+
   </div>
 
-  <script src="js/personagens.js"></script>
+  <!-- Arquivo de personagens -->
+  <script src="personagens.js"></script>
+
 
   <script>
-    function voltar(){
+    function voltar() {
       window.location.href = "index.html";
     }
+
+    // Atualiza preview ao trocar personagem
     function updatePreview() {
       var sel = document.getElementById('sct_carta');
-      var val = sel ? sel.value : '1';
-      var img = document.getElementById('preview_img');
+      var val = sel.value;
+
+      document.getElementById('preview_img').src = imagemCarta(val);
+
       var ul = document.getElementById('lista_habilidades');
-      img.src = imagemCarta(val);
-      ul.innerHTML = '';
+      ul.innerHTML = "";
+
       var list = habilidades[val] || [];
-      for (var i = 0; i < list.length; i++) {
-        var li = document.createElement('li');
-        li.textContent = list[i];
+      list.forEach(function (hab) {
+        var li = document.createElement("li");
+        li.textContent = hab;
         ul.appendChild(li);
-      }
+      });
     }
 
-    // Redireciona para a página de batalha passando a carta selecionada
+    // Vai para a batalha com parâmetro
     function startBattle() {
-      var sel = document.getElementById('sct_carta');
-      var val = sel ? sel.value : '1';
+      var val = document.getElementById('sct_carta').value;
       location.href = 'batalha.html?c=' + val;
     }
 
-    // atualiza ao carregar
-    window.addEventListener('load', updatePreview);
+    // Atualiza preview ao carregar página
+    window.onload = updatePreview;
   </script>
+
 </body>
 
 </html>

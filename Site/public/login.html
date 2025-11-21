@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <link rel="stylesheet" href="styles/login.css" />
+  <link rel="stylesheet" href="css/login.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/logo.png" />
 </head>
@@ -29,7 +29,7 @@
           <div class="dados">
             <div class="caixa_input">
               <h3>Usuário:</h3>
-              <input type="text" placeholder="Ex: JonathanJoestar@sptech.school" id="input_usuario" />
+              <input type="text" placeholder="Ex: JonathanJoestar@sptech.school" id="input_email" />
             </div>
 
             <div class="caixaInput">
@@ -40,7 +40,7 @@
         </div>
         <div class="div_button">
           <button onclick="logar()">Logar</button>
-          <li><a href="tela-de-cadastro.html">Cadastrar-se</a></li>
+          <li><a href="cadastro.html">Cadastrar-se</a></li>
           <p id="div_mensagem"></p>
           <a href="tela-de-cadastro.html"><label for="">Cadastro</label></a>
         </div>
@@ -59,11 +59,11 @@
   var logado = false;
 
   function logar() {
-    var usuario = input_usuario.value;
+    var email = input_email.value;
     var senha = input_senha.value;
 
     while (contTentativas > 0 && logado == false) {
-      if (usuarioRegistrado.includes(usuario)) {
+      if (usuarioRegistrado.includes(email)) {
         if (usuarioRegistrado[1] == senha) {
           div_mensagem.innerHTML = "<b style='color:green'>Login realizado com sucesso!</b>";
           logado = true;
@@ -81,5 +81,33 @@
         contTentativas = 0;
       }
     }
+    fetch('/usuarios/autenticar',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        emailServer: email,
+        senhaServer: senha
+      })
+    })
+      .then(function(resposta){
+        if(resposta.ok) {
+          // document.getElementById('textError').textContent = ''
+          resposta.json().then(json => {
+            sessionStorage.NOME_USUARIO = json.nome
+
+            setTimeout(function (){
+              window.location = 'selecao.html'
+            }, 1000)
+          })
+
+        } else {
+          div_mensagem.innerHTML = "<b style='color:red'>Usuário inválido.</b>";
+        }
+      }).catch(function (erro){
+        console.log(erro)
+      })
+      return false
   }
 </script>

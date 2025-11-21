@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard da Partida</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #fafafa;
+      padding: 20px;
+    }
+    h1 { text-align: center; }
+    .graf-area {
+      width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 0 0 10px #0002;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body onload="obterDados()">
+
+<h1>📊 Dashboard da Batalha</h1>
+
+<!-- Gráficos -->
+<div class="graf-area">
+  <h3>Dano causado por rodada</h3>
+  <canvas id="linha"></canvas>
+</div>
+
+<div class="graf-area">
+  <h3>Dano recebido por rodada</h3>
+  <canvas id="barra"></canvas>
+</div>
+
+<script>
+
+// -----------------------------------------------------------
+// OBTENDO DADOS DO LOCALSTORAGE (vindos da página da batalha)
+// -----------------------------------------------------------
+function obterDados() {
+
+  // Se não houver dados, cria valores fictícios para teste
+  var dano = JSON.parse(localStorage.getItem("dash_dano")) || [10, 15, 12, 20];
+  var danoRecebido = JSON.parse(localStorage.getItem("dash_danoPC")) || [5, 8, 0, 14];
+
+  var dadosLinha = [];
+  var dadosBarra = [];
+
+  for (var i = 0; i < dano.length; i++) {
+    dadosLinha.push({ rodada: "Rodada " + (i+1), valor: dano[i] });
+  }
+  for (var i = 0; i < danoRecebido.length; i++) {
+    dadosBarra.push({ rodada: "Rodada " + (i+1), valor: danoRecebido[i] });
+  }
+
+  plotarGraficoLinha(dadosLinha);
+  plotarGraficoBarra(dadosBarra);
+}
+
+// -----------------------------------------------------------
+// GRÁFICO DE LINHA – DANO CAUSADO
+// -----------------------------------------------------------
+function plotarGraficoLinha(dados) {
+
+  var valores = [];
+  var labels = [];
+
+  for (var i = 0; i < dados.length; i++) {
+    valores.push(dados[i].valor);
+    labels.push(dados[i].rodada);
+  }
+
+  var ctx = document.getElementById('linha').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Dano causado",
+        data: valores,
+        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
+        borderColor: ["rgba(255, 99, 132, 1)"],
+        borderWidth: 2
+      }]
+    }
+  });
+}
+
+// -----------------------------------------------------------
+// GRÁFICO DE BARRA – DANO RECEBIDO
+// -----------------------------------------------------------
+function plotarGraficoBarra(dados) {
+
+  var valores = [];
+  var labels = [];
+
+  for (var i = 0; i < dados.length; i++) {
+    valores.push(dados[i].valor);
+    labels.push(dados[i].rodada);
+  }
+
+  var ctx = document.getElementById('barra').getContext('2d');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Dano recebido",
+        data: valores,
+        backgroundColor: ["rgba(99, 132, 255, 0.2)"],
+        borderColor: ["rgba(99, 132, 255, 1)"],
+        borderWidth: 2
+      }]
+    }
+  });
+}
+
+</script>
+
+</body>
+</html>
