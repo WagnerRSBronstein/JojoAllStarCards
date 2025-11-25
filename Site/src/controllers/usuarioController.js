@@ -21,7 +21,8 @@ function autenticar(req, res) {
                         console.log(resultadoAutenticar);
 
                         res.json({
-                            nome: resultadoAutenticar[0].nome
+                            nome: resultadoAutenticar[0].nome,
+                            idUsuario: resultadoAutenticar[0].idUsuario
                         });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");

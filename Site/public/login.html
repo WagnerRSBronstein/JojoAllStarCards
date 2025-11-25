@@ -95,7 +95,8 @@
         if(resposta.ok) {
           // document.getElementById('textError').textContent = ''
           resposta.json().then(json => {
-            sessionStorage.NOME_USUARIO = json.nome
+            sessionStorage.NOME_USUARIO = json.nome,
+            sessionStorage.ID_USUARIO = json.idUsuario
 
             setTimeout(function (){
               window.location = 'selecao.html'

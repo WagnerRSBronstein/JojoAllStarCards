@@ -126,7 +126,6 @@ body {
 
 /* Adiciona um pequeno ícone de espera no botão com cooldown */
 #botoes_ataque button[disabled]::after {
-  content: " ⏳";
   /* Ícone de recarga */
   font-size: 14px;
 }

@@ -1,132 +1,155 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard da Partida</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <style>
-    body {
-      font-family: Arial;
-      background: #fafafa;
-      padding: 20px;
-    }
-    h1 { text-align: center; }
-    .graf-area {
-      width: 600px;
-      margin: auto;
-      padding: 20px;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 0 10px #0002;
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/dashboardColmeia1.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="obterDados()">
+<body onload="carregarDash()">
+    <div class="left-bar">
+        <img src="../assets/logo.png" alt="" />
 
-<h1>📊 Dashboard da Batalha</h1>
+        <p>Dashboard específica da colmeia 1.</p>
+        <a href="../selecao.html"><button>Voltar</button></a>
+    </div>
+    <div class="container-main">
+        <div class="container-top">
+            <h1>Métricas:</h1>
+            <div class="container-metricas">
+                <div class="box-1">
+                    <h2><b>Crítico</b></h2>
+                    <p> Menor 80dmg.</p>
+                </div>
+                <div class="box-2">
+                    <h2><b>Preocupante</b></h2>
+                    <p>Abaixo 100 dmg.</p>
+                </div>
+                <div class="box-3">
+                    <h2><b>Ideal</b></h2>
+                    <p>100 dmg.</p>
+                </div>
+                <div class="box-4">
+                    <h2><b>Bom</b></h2>
+                    <p>Acima de 100dmg.</p>
+                </div>
+                <div class="box-5">
+                    <h2><b>Muito bom</b></h2>
+                    <p>Acima de 200dmg.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-dados">
+            <h1>Registros:</h1>
+            <div class="container-registros">
+                <div class="registro-1">
+                    <p>Número total de partidas: <br>
+                    <h2>44</h2>
+                    </p>
+                </div>
 
-<!-- Gráficos -->
-<div class="graf-area">
-  <h3>Dano causado por rodada</h3>
-  <canvas id="linha"></canvas>
-</div>
+                <div class="registro-2">
+                    <p>Maior dano causado:<br>
+                    <h2>300</h2>
+                    </p>
+                </div>
 
-<div class="graf-area">
-  <h3>Dano recebido por rodada</h3>
-  <canvas id="barra"></canvas>
-</div>
+                <div class="registro-3">
+                    <p>Menor dano causado:<br>
+                    <h2>90</h2>
+                    </p>
+                </div>
 
-<script>
 
-// -----------------------------------------------------------
-// OBTENDO DADOS DO LOCALSTORAGE (vindos da página da batalha)
-// -----------------------------------------------------------
-function obterDados() {
+                <div class="registro-4">
+                    <p>Dia que mais jogou: <br>
+                    <h2>2º</h2>
+                    </p>
+                </div>
 
-  // Se não houver dados, cria valores fictícios para teste
-  var dano = JSON.parse(localStorage.getItem("dash_dano")) || [10, 15, 12, 20];
-  var danoRecebido = JSON.parse(localStorage.getItem("dash_danoPC")) || [5, 8, 0, 14];
+                <div class="registro-5  ">
+                    <p>Dia que menos jogou: <br>
+                    <h2>5º</h2>
+                    </p>
+                </div>
+            </div>
 
-  var dadosLinha = [];
-  var dadosBarra = [];
+            <div class="graficos">
+                <div class="grafico-1">
+                    <h3>Últimas partidas</h3>
+                    <canvas id="grafico-1"></canvas>
+                </div>
+                <div class="grafico-2">
+                    <h3>Histórico de Partidas</h3>
+                    <canvas id="grafico-2"></canvas>
+                </div>
+            </div>
 
-  for (var i = 0; i < dano.length; i++) {
-    dadosLinha.push({ rodada: "Rodada " + (i+1), valor: dano[i] });
-  }
-  for (var i = 0; i < danoRecebido.length; i++) {
-    dadosBarra.push({ rodada: "Rodada " + (i+1), valor: danoRecebido[i] });
-  }
+        </div>
 
-  plotarGraficoLinha(dadosLinha);
-  plotarGraficoBarra(dadosBarra);
-}
 
-// -----------------------------------------------------------
-// GRÁFICO DE LINHA – DANO CAUSADO
-// -----------------------------------------------------------
-function plotarGraficoLinha(dados) {
 
-  var valores = [];
-  var labels = [];
-
-  for (var i = 0; i < dados.length; i++) {
-    valores.push(dados[i].valor);
-    labels.push(dados[i].rodada);
-  }
-
-  var ctx = document.getElementById('linha').getContext('2d');
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "Dano causado",
-        data: valores,
-        backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-        borderColor: ["rgba(255, 99, 132, 1)"],
-        borderWidth: 2
-      }]
-    }
-  });
-}
-
-// -----------------------------------------------------------
-// GRÁFICO DE BARRA – DANO RECEBIDO
-// -----------------------------------------------------------
-function plotarGraficoBarra(dados) {
-
-  var valores = [];
-  var labels = [];
-
-  for (var i = 0; i < dados.length; i++) {
-    valores.push(dados[i].valor);
-    labels.push(dados[i].rodada);
-  }
-
-  var ctx = document.getElementById('barra').getContext('2d');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "Dano recebido",
-        data: valores,
-        backgroundColor: ["rgba(99, 132, 255, 0.2)"],
-        borderColor: ["rgba(99, 132, 255, 1)"],
-        borderWidth: 2
-      }]
-    }
-  });
-}
-
-</script>
-
+    </div>
 </body>
+
 </html>
+<script>
+    const ctx = document.getElementById('grafico-1');
+    const ctx2 = document.getElementById('grafico-2');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º'],
+            datasets: [{
+                label: 'Dano causado',
+                data: [100,150,200,250,300,350,400,450,500],
+                borderWidth: 2,
+                borderColor: 'black',
+                color: '#e74c3c',
+                backgroundColor: '#B22222'
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+ labels: ['Segunda', 'Terça', 'Quarta','Quinta','Sexta','Sabado','Domingo'],
+            datasets: [{
+                label: 'Jogatinas da semana.',
+                data: [0, 1, 2,2,1,0,0],
+                borderWidth: 1,
+                color: '#e74c3c',
+                backgroundColor: '#B22222',
+                borderColor:'black'
+
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                   beginAtZero: true,
+                    ticks: {
+                        precision:0
+                    }
+            }}
+        }
+    });
+
+
+    function carregarDash(){
+        
+    }
+</script>
