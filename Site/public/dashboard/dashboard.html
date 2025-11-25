@@ -9,11 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="carregarDash()">
+<body>
     <div class="left-bar">
         <img src="../assets/logo.png" alt="" />
 
-        <p>Dashboard específica da colmeia 1.</p>
+        <p>DashDano.</p>
         <a href="../selecao.html"><button>Voltar</button></a>
     </div>
     <div class="container-main">
@@ -53,7 +53,7 @@
 
                 <div class="registro-2">
                     <p>Maior dano causado:<br>
-                    <h2>300</h2>
+                    <h2 id="Maior">300</h2>
                     </p>
                 </div>
 
@@ -89,67 +89,91 @@
             </div>
 
         </div>
-
-
-
     </div>
 </body>
 
 </html>
 <script>
-    const ctx = document.getElementById('grafico-1');
-    const ctx2 = document.getElementById('grafico-2');
+    var arrayDanos = [];
+    var organizar = [];
+    carregarDash();
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º'],
-            datasets: [{
-                label: 'Dano causado',
-                data: [100,150,200,250,300,350,400,450,500],
-                borderWidth: 2,
-                borderColor: 'black',
-                color: '#e74c3c',
-                backgroundColor: '#B22222'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: false
+    function grafico_dano() {
+
+        for (var i = arrayDanos.length - 1; i >= 0; i--) {
+            organizar.push(arrayDanos[i]);
+        }
+        setInterval(() => {
+            location.reload();
+        }, 1000);
+        const ctx = document.getElementById('grafico-1');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º'],
+                datasets: [{
+                    label: 'Dano causado',
+                    data: organizar,
+                    borderWidth: 2,
+                    borderColor: 'black',
+                    color: '#e74c3c',
+                    backgroundColor: '#B22222'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
                 }
             }
-        }
-    });
+        });
+        chart.update();
+    }
 
+    function carregarDash() {
 
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
- labels: ['Segunda', 'Terça', 'Quarta','Quinta','Sexta','Sabado','Domingo'],
-            datasets: [{
-                label: 'Jogatinas da semana.',
-                data: [0, 1, 2,2,1,0,0],
-                borderWidth: 1,
-                color: '#e74c3c',
-                backgroundColor: '#B22222',
-                borderColor:'black'
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                   beginAtZero: true,
-                    ticks: {
-                        precision:0
-                    }
-            }}
-        }
-    });
+        fetch('/batalha/checarID', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
 
+            })
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    // document.getElementById('textError').textContent = ''
+                    resposta.json().then(json => {
+                        sessionStorage.DANO_CAUSADO = json.dano_causado
+                    })
 
-    function carregarDash(){
-        
+                } else {
+                    alert("Dano inválido.");
+                }
+            }).catch(function (erro) {
+                console.log(erro)
+            })
+        armazenar();
+        return false
+    }
+    function armazenar() {
+        var valorDano = sessionStorage.DANO_CAUSADO;
+        var text = "";
+        for (var i = 0; i <= valorDano.length; i++) {
+            if (i == valorDano.length) {
+                arrayDanos.push(Number(text));
+            } else if (valorDano[i] != ",") {
+                text += valorDano[i];
+            } else {
+                arrayDanos.push(Number(text));
+                text = "";
+            }
+        } console.log(arrayDanos);
+        grafico_dano();
     }
 </script>

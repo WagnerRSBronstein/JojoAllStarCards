@@ -8,14 +8,21 @@ function checarID(req, res){
     }else {
 
         batalhaModel.checarID(idUsuario)
-            .then(
+        .then(
                 function(resultado) {
-                    
-                    if(resultado.length == 1) {
+                    if(resultado.length >= 1 && resultado.length <= 10) {
+                        var lista= [];
+                        for(var i = 0; i < resultado.length; i++){
+                            lista.push(resultado[i].dano_causado);
+                        } 
+                        
+                        res.json({
+                            dano_causado: lista
+                        });
                         console.log(resultado);
                         res.status(200).send(resultado[0]);
                     }else {
-                        res.status(403).send("idUsuario invalido")
+                        res.status(403).send("Dano Inválido!")
                     }
                 }
             ).catch(

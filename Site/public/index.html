@@ -77,14 +77,17 @@
           <img id="img" src="assets/linhagem.png" alt="">
           <img id="img2" src="assets/Jonas.png" alt="">
           <img id="img3" src="assets/will.jpg" alt="">
-          <p id="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta iste blanditiis minima sed autem saepe
-            nesciunt amet quis tempore a, quae quaerat doloremque odio nobis harum officia possimus voluptates corrupti?
+          <p id="texto">
+            Essa é minha familia, minha linhagem de sangue, as pessoas que mais importam para mim estão nessa imagem, Andreia Maria, Arthur Henrique e Wesley Gabriel.
+            Compartilho com eles a mesma tatuagem, uma estrela no obro que tem o significado de Linhagem de sangue.
           </p>
-          <p id="texto2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta iste blanditiis minima sed autem saepe
-            nesciunt amet quis tempore a, quae quaerat doloremque odio nobis harum officia possimus voluptates corrupti?
+          <p id="texto2">
+            Essa foto representa minha primeira experiência com a SPtech, fui na formatura do ex Aluno Rai Jonas, que se formou em ADS em 2023.
+            Ele é uma pessoa extremamente importante que me convenceu a tentar evoluir e buscar um futuro melhor acreditando na metodologia da SPtech.
           </p>
-          <p id="texto3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta iste blanditiis minima sed autem saepe
-            nesciunt amet quis tempore a, quae quaerat doloremque odio nobis harum officia possimus voluptates corrupti?
+          <p id="texto3">
+            Esses são Livia Gabrielly e Willian das Neves, amigos que me acompanharam  por muito tempo da minha vida, infelizmente Willian se foi no final de 2024, deixando amigos, esposa e filha para trás.
+            Sem Nenhum deles eu não sei se eu realmente seria eu.
           </p>
         </div>
       </div>
@@ -95,39 +98,23 @@
     <div class="banner-formulario">
       <div class="campos">
         <div class="inputs">
-          <div class="input">
+          <div class="input" >
             <p>Nickname:</p>
-            <input type="text">
-          </div>
-          <div class="input">
-            <p>Email:</p>
-            <input type="text">
-          </div>
-          <div class="input">
-            <p>CNPJ:</p>
-            <input type="text">
+            <input type="text" id="input_nickname">
           </div>
         </div>
         <div class="inputs">
-          <div class="input">
-            <p>Sobrenome:</p>
-            <input type="text">
-          </div>
-          <div class="input">
-            <p>Telefone:</p>
-            <input type="text">
-          </div>
-          <div class="input">
-            <p>Cargo:</p>
-            <input type="text">
+          <div class="input" >
+            <p>Email:</p>
+            <input type="text" id="input_email">
           </div>
         </div>
       </div>
-      <div class="input-mensagem">
+      <div class="input-mensagem" >
         <p>Mensagem</p>
-        <input type="text">
+        <input type="text" id="input_hotfix">
       </div>
-      <button>ENVIAR</button>
+      <button onclick="enviar()">ENVIAR</button>
     </div>
   </div>
   <footer>
@@ -143,5 +130,44 @@
 
   </footer>
 </body>
+<script>
+  function enviar() {
+
+    var nickname = input_nickname.value;
+    var email = input_email.value;
+    var hotfix = input_hotfix.value;
+
+    fetch('/usuarios/enviar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nicknameServer: nickname,
+        emailServer: email,
+        hotfixServer: hotfix
+
+      }),
+
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          alert('Mensagem enviada com sucesso!')
+
+          setTimeout(() => {
+            window.location = 'login.html'
+          }, '2000')
+        } else {
+          alert('Houve um erro ao tentar realizar o cadastro!')
+          throw 'Houve um erro ao tentar realizar o cadastro!'
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`)
+      })
+
+    return false
+  }
+</script>
 
 </html>

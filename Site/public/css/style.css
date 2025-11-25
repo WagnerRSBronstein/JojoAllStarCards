@@ -389,19 +389,20 @@ body .quemsomos img{
     display: flex;
     width: 300px;
     margin-right: 200%;
+    margin-top: 10px;
 
 }
 .banner-equipe .boxes1 .box #texto2{
     display: flex;
     width: 300px;
-    margin-top: -135px;
+    margin-top: -172px;
     margin-left: 20px;
 
 }
 .banner-equipe .boxes1 .box #texto3{
     display: flex;
     width: 300px;
-    margin-top: -135px;
+    margin-top: -170px;
     margin-right: -683px;
 
 }
