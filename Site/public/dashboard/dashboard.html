@@ -21,7 +21,7 @@
             <h1>Métricas:</h1>
             <div class="container-metricas">
                 <div class="box-1">
-                    <h2><b>Crítico</b></h2>
+                    <h2><b>Horroroso</b></h2>
                     <p> Menor 80dmg.</p>
                 </div>
                 <div class="box-2">
@@ -46,33 +46,33 @@
             <h1>Registros:</h1>
             <div class="container-registros">
                 <div class="registro-1">
-                    <p>Número total de partidas: <br>
-                    <h2>44</h2>
+                    <p>Média de dano: <br>
+                    <h2 id="Media">44</h2>
                     </p>
                 </div>
 
                 <div class="registro-2">
                     <p>Maior dano causado:<br>
-                    <h2 id="Maior">300</h2>
+                    <h2 id="Maior"></h2>
                     </p>
                 </div>
 
                 <div class="registro-3">
                     <p>Menor dano causado:<br>
-                    <h2>90</h2>
+                    <h2 id="Menor">90</h2>
                     </p>
                 </div>
 
 
                 <div class="registro-4">
-                    <p>Dia que mais jogou: <br>
-                    <h2>2º</h2>
+                    <p> <br>
+                    <h2></h2>
                     </p>
                 </div>
 
                 <div class="registro-5  ">
-                    <p>Dia que menos jogou: <br>
-                    <h2>5º</h2>
+                    <p> <br>
+                    <h2></h2>
                     </p>
                 </div>
             </div>
@@ -82,10 +82,7 @@
                     <h3>Últimas partidas</h3>
                     <canvas id="grafico-1"></canvas>
                 </div>
-                <div class="grafico-2">
-                    <h3>Histórico de Partidas</h3>
-                    <canvas id="grafico-2"></canvas>
-                </div>
+                
             </div>
 
         </div>
@@ -96,40 +93,41 @@
 <script>
     var arrayDanos = [];
     var organizar = [];
+    var danoMaior = 0;
+    var danoMenor = 0;
     carregarDash();
-
     function grafico_dano() {
-
+        
         for (var i = arrayDanos.length - 1; i >= 0; i--) {
             organizar.push(arrayDanos[i]);
         }
         setInterval(() => {
-            location.reload();
-        }, 1000);
-        const ctx = document.getElementById('grafico-1');
-        var chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º'],
-                datasets: [{
-                    label: 'Dano causado',
-                    data: organizar,
-                    borderWidth: 2,
-                    borderColor: 'black',
-                    color: '#e74c3c',
-                    backgroundColor: '#B22222'
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: false
+                location.reload();
+            }, 1000);
+            const ctx = document.getElementById('grafico-1');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1º', '2º', '3º', '4º', '5º', '6º', '7º', '8º', '9º', '10º'],
+                    datasets: [{
+                        label: 'Dano causado',
+                        data: organizar,
+                        borderWidth: 2,
+                        borderColor: 'black',
+                        color: '#e74c3c',
+                        backgroundColor: '#B22222'
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: false
+                        }
                     }
                 }
-            }
-        });
-        chart.update();
-    }
+            });
+            // chart.update();
+        }
 
     function carregarDash() {
 
@@ -175,5 +173,23 @@
             }
         } console.log(arrayDanos);
         grafico_dano();
+        kpi();
+    }
+    function kpi(){
+        var media = 0;
+        arrayDanos.sort(function(a,b){return b - a});
+        danoMaior = arrayDanos[0];
+        danoMenor = arrayDanos[arrayDanos.length -1];
+        const danoM = document.getElementById('Menor');
+        danoM.innerHTML = danoMenor;
+        const dano = document.getElementById('Maior');
+        dano.innerHTML = danoMaior;
+
+        for(var i = 0; i < arrayDanos.length; i++){
+            media += arrayDanos[i];
+        }
+        media = media / (arrayDanos.length);
+        const mediaHtml = document.getElementById('Media');
+        mediaHtml.innerHTML = media.toFixed(1);
     }
 </script>
