@@ -19,7 +19,7 @@ create table hotfix (
 );
 
 CREATE TABLE historico_batalhas (
-    id_batalha INT PRIMARY KEY auto_increment,
+    id_batalha INT PRIMARY KEY,
     idUsuario INT NOT NULL,
     dano_causado INT NOT NULL DEFAULT 0,
     data_batalha DATETIME DEFAULT CURRENT_TIMESTAMP,
